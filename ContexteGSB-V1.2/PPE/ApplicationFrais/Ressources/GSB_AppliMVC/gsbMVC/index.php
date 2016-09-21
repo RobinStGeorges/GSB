@@ -2,6 +2,7 @@
 require_once("include/fct.inc.php");
 require_once ("include/class.pdogsb.inc.php");
 include("vues/v_entete.php") ;
+echo "bonjour c vinsen premier" ;
 session_start();
 $pdo = PdoGsb::getPdoGsb();
 $estConnecte = estConnecte();
@@ -21,6 +22,6 @@ switch($uc){
 	}
 }
 include("vues/v_pied.php") ;
-echo"bonjour";
+
 ?>
 
