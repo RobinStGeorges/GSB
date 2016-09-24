@@ -30,5 +30,5 @@ switch($action){
 		include("vues/v_connexion.php");
 		break;
 	}
-}
+}//test pc de robin
 ?>
