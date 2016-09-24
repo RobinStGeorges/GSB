@@ -47,10 +47,10 @@ CREATE TABLE IF NOT EXISTS `Etat` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Visiteur`
+-- Structure de la table `Utilisateur`
+--Ancienne table 'Visiteur'
 --
-
-CREATE TABLE IF NOT EXISTS `Visiteur` (
+CREATE TABLE IF NOT EXISTS `Utilisateur` (
   `id` char(4) NOT NULL,
   `nom` char(30) DEFAULT NULL,
   `prenom` char(30)  DEFAULT NULL, 
@@ -60,7 +60,8 @@ CREATE TABLE IF NOT EXISTS `Visiteur` (
   `cp` char(5) DEFAULT NULL,
   `ville` char(30) DEFAULT NULL,
   `dateEmbauche` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `typeUser` int DEFAULT NULL,
+   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
 
