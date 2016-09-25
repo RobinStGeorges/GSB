@@ -21,7 +21,9 @@ switch($action){
 			$id = $visiteur['id'];
 			$nom =  $visiteur['nom'];
 			$prenom = $visiteur['prenom'];
-			connecter($id,$nom,$prenom);
+                        //Test apartenance Comptable ou visiteur
+                        $typeUser=$Visiteur['typeCompte'];
+			connecter($id,$nom,$prenom,$typeUser);
 			include("vues/v_sommaire.php");
 		}
 		break;
