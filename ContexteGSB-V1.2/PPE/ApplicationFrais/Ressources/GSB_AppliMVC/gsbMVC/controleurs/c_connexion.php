@@ -11,21 +11,28 @@ switch($action){
 	case 'valideConnexion':{
 		$login = $_REQUEST['login'];
 		$mdp = $_REQUEST['mdp'];
-		$visiteur = $pdo->getInfosVisiteur($login,$mdp);
-		if(!is_array( $visiteur)){
+		$Utilisateur = $pdo->getInfosUtilisateur($login,$mdp);
+		if(!is_array( $Utilisateur)){
 			ajouterErreur("Login ou mot de passe incorrect");
 			include("vues/v_erreurs.php");
 			include("vues/v_connexion.php");
 		}
 		else{
-			$id = $visiteur['id'];
-			$nom =  $visiteur['nom'];
-			$prenom = $visiteur['prenom'];
-			connecter($id,$nom,$prenom);
+			$id = $Utilisateur['id'];
+			$nom =  $Utilisateur['nom'];
+			$prenom = $Utilisateur['prenom'];
+                        //Test apartenance Comptable ou Utilisateur
+                        $typeUser=$Utilisateur['typeCompte'];
+			connecter($id,$nom,$prenom,$typeUser);
 			include("vues/v_sommaire.php");
 		}
 		break;
 	}
+        case 'deconnexion':{
+			session_destroy();
+			header("Location: index.php");
+		break;
+            }
 	default :{
 		include("vues/v_connexion.php");
 		break;
