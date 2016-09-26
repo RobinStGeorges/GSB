@@ -1,4 +1,5 @@
 ﻿<?php
+
 if(!isset($_REQUEST['action'])){
 	$_REQUEST['action'] = 'demandeConnexion';
 }
@@ -11,7 +12,7 @@ switch($action){
 	case 'valideConnexion':{
 		$login = $_REQUEST['login'];
 		$mdp = $_REQUEST['mdp'];
-		$utilisateur = $pdo->getInfosutilisateur($login,$mdp);
+		$utilisateur = $pdo->getInfosUtilisateur($login,$mdp);
 		if(!is_array( $utilisateur)){
 			ajouterErreur("Login ou mot de passe incorrect");
 			include("vues/v_erreurs.php");

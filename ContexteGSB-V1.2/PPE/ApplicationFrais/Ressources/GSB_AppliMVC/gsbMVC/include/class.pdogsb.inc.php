@@ -1,5 +1,5 @@
 ﻿<?php
-echo"";
+
 /** 
  * Classe d'accès aux données. 
  
@@ -30,7 +30,7 @@ class PdoGsb{
     	PdoGsb::$monPdo = new PDO(PdoGsb::$serveur.';'.PdoGsb::$bdd, PdoGsb::$user, PdoGsb::$mdp); 
 		PdoGsb::$monPdo->query("SET CHARACTER SET utf8");
 	}
-	public function _destruct(){
+	public function _destruct(){ 
 		PdoGsb::$monPdo = null;
 	}
 /**
@@ -54,8 +54,7 @@ class PdoGsb{
  * @return l'id, le nom et le prénom sous la forme d'un tableau associatif 
 */
 	public function getInfosUtilisateur($login, $mdp){
-		$req = "select utilisateur.id as id, utilisateur.nom as nom, utilisateur.prenom as prenom , utilisateur.typeUser as typeUser 
-		from utilisateur where utilisateur.login='$login' and utilisateur.mdp='$mdp'";
+		$req = "select Utilisateur.id as id, Utilisateur.nom as nom, Utilisateur.prenom as prenom , Utilisateur.typeUser as typeUser from Utilisateur where Utilisateur.login='$login' and Utilisateur.mdp='$mdp' ";
                 
                 
 		$rs = PdoGsb::$monPdo->query($req);
