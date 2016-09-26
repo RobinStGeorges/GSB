@@ -1,4 +1,5 @@
 ﻿<?php
+echo"";
 /** 
  * Classe d'accès aux données. 
  
