@@ -9,16 +9,15 @@
  * $monPdo de type PDO 
  * $monPdoGsb qui contiendra l'unique instance de la classe
  
- * @package default
- * @author Cheri Bibi
- * @version    1.0
- * @link       http://www.php.net/manual/fr/book.pdo.php
- */
 
+ */
+/**
+ * Mettre user et mdp
+ */
 class PdoGsb{   		
       	private static $serveur='mysql:host=localhost';
-      	private static $bdd='dbname=gsb_frais';   		
-      	private static $user='root' ;    		
+      	private static $bdd='dbname=rsaint';   		
+      	private static $user='' ;    		
       	private static $mdp='' ;	
 		private static $monPdo;
 		private static $monPdoGsb=null;
