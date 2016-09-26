@@ -11,17 +11,17 @@
  * @return vrai ou faux 
  */
 function estConnecte(){
-  return isset($_SESSION['idUtilisateur']);
+  return isset($_SESSION['idutilisateur']);
 }
 /**
- * Enregistre dans une variable session les infos d'un Utilisateur
+ * Enregistre dans une variable session les infos d'un utilisateur
  
  * @param $id 
  * @param $nom
  * @param $prenom
  */
 function connecter($id,$nom,$prenom){
-	$_SESSION['idUtilisateur']= $id; 
+	$_SESSION['idutilisateur']= $id; 
 	$_SESSION['nom']= $nom;
 	$_SESSION['prenom']= $prenom;
 }

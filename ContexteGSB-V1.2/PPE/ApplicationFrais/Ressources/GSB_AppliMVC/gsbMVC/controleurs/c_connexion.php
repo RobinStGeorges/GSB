@@ -11,18 +11,18 @@ switch($action){
 	case 'valideConnexion':{
 		$login = $_REQUEST['login'];
 		$mdp = $_REQUEST['mdp'];
-		$Utilisateur = $pdo->getInfosUtilisateur($login,$mdp);
-		if(!is_array( $Utilisateur)){
+		$utilisateur = $pdo->getInfosutilisateur($login,$mdp);
+		if(!is_array( $utilisateur)){
 			ajouterErreur("Login ou mot de passe incorrect");
 			include("vues/v_erreurs.php");
 			include("vues/v_connexion.php");
 		}
 		else{
-			$id = $Utilisateur['id'];
-			$nom =  $Utilisateur['nom'];
-			$prenom = $Utilisateur['prenom'];
-                        //Test apartenance Comptable ou Utilisateur
-                        $typeUser=$Utilisateur['typeUser'];
+			$id = $utilisateur['id'];
+			$nom =  $utilisateur['nom'];
+			$prenom = $utilisateur['prenom'];
+                        //Test apartenance Comptable ou utilisateur
+                        $typeUser=$utilisateur['typeUser'];
 			connecter($id,$nom,$prenom,$typeUser);
                         if ($typeUser==0){
 			include("vues/v_sommaireV.php");
