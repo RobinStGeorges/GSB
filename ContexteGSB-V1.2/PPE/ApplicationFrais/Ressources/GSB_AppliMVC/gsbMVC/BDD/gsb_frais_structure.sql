@@ -60,8 +60,11 @@ CREATE TABLE IF NOT EXISTS `Utilisateur` (
   `cp` char(5) DEFAULT NULL,
   `ville` char(30) DEFAULT NULL,
   `dateEmbauche` date DEFAULT NULL,
-  `typeUser` int DEFAULT NULL,
+  `typeUser` char(30) DEFAULT NULL,ULL,
+
+
    PRIMARY KEY (`id`)
+
 ) ENGINE=InnoDB;
 
 

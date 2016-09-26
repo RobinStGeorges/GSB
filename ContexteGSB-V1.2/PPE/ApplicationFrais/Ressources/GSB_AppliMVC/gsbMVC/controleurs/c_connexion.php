@@ -22,12 +22,15 @@ switch($action){
 			$nom =  $Utilisateur['nom'];
 			$prenom = $Utilisateur['prenom'];
                         //Test apartenance Comptable ou Utilisateur
-                        $typeUser=$Utilisateur['typeCompte'];
+                        $typeUser=$Utilisateur['typeUser'];
 			connecter($id,$nom,$prenom,$typeUser);
-			include("vues/v_sommaire.php");
+                        if ($typeUser==0){
+			include("vues/v_sommaireV.php");
 		}
+                else {include("vues/v_sommaireC.php");}
 		break;
 	}
+        }
         case 'deconnexion':{
 			session_destroy();
 			header("Location: index.php");
