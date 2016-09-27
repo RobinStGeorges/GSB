@@ -1,10 +1,11 @@
 <?php
-include ("include/class.pdogsb.inc.php");
+require("include/class.pdogsb.inc.php");
+
 
 include("vues/v_sommaireC.php");
 
 $action = $_REQUEST['action'];
-$sql=$monPdo->prepare("select * from fichefrais where idetat!='cr'");
+$sql=$monPdo->query("select * from fichefrais where idetat!='cr'");
 switch($action){
         case 'validerFrais':{ ?>
             <select name='valide'>
