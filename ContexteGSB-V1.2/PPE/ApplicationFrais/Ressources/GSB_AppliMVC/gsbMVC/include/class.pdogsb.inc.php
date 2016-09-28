@@ -69,7 +69,7 @@ class PdoGsb{
  * La boucle foreach ne peut être utilisée ici car on procède
  * à une modification de la structure itérée - transformation du champ date-
  
- * @param $idUtilisateur 
+ * @param  
  * @param $mois sous la forme aaaamm
  * @return tous les champs des lignes de frais hors forfait sous la forme d'un tableau associatif 
 */
@@ -88,7 +88,7 @@ class PdoGsb{
 /**
  * Retourne le nombre de justificatif d'un Utilisateur pour un mois donné
  
- * @param $idUtilisateur 
+ * @param  
  * @param $mois sous la forme aaaamm
  * @return le nombre entier de justificatifs 
 */
@@ -183,7 +183,7 @@ class PdoGsb{
 /**
  * Retourne le dernier mois en cours d'un visiteur
  
- * @param $idVisiteur 
+ * @param  
  * @return le mois sous la forme aaaamm
 */	
 	public function dernierMoisSaisi($idutilisateur){
@@ -199,12 +199,12 @@ class PdoGsb{
  
  * récupère le dernier mois en cours de traitement, met à 'CL' son champs idEtat, crée une nouvelle fiche de frais
  * avec un idEtat à 'CR' et crée les lignes de frais forfait de quantités nulles 
- * @param $idVisiteur 
+ * @param  
  * @param $mois sous la forme aaaamm
 */
 	public function creeNouvellesLignesFrais($idutilisateur,$mois){
 		$dernierMois = $this->dernierMoisSaisi($idutilisateur);
-		$laDerniereFiche = $this->getLesInfosFicheFrais($idVisiteur,$dernierMois);
+		$laDerniereFiche = $this->getLesInfosFicheFrais($idutilisateur,$dernierMois);
 		if($laDerniereFiche['idEtat']=='CR'){
 				$this->majEtatFicheFrais($idutilisateur, $dernierMois,'CL');
 				
@@ -248,7 +248,7 @@ class PdoGsb{
 /**
  * Retourne les mois pour lesquel un visiteur a une fiche de frais
  
- * @param $idVisiteur 
+ * @param  
  * @return un tableau associatif de clé un mois -aaaamm- et de valeurs l'année et le mois correspondant 
 */
 	public function getLesMoisDisponibles($idutilisateur){
@@ -270,10 +270,29 @@ class PdoGsb{
 		}
 		return $lesMois;
 	}
+        public function getLesMoisDisponiblesC(){
+		$req = "select fichefrais.mois as mois from  fichefrais  
+		order by fichefrais.mois desc ";
+		$res = PdoGsb::$monPdo->query($req);
+		$lesMois =array();
+		$laLigne = $res->fetch();
+		while($laLigne != null)	{
+			$mois = $laLigne['mois'];
+			$numAnnee =substr( $mois,0,4);
+			$numMois =substr( $mois,4,2);
+			$lesMois["$mois"]=array(
+		     "mois"=>"$mois",
+		    "numAnnee"  => "$numAnnee",
+			"numMois"  => "$numMois"
+             );
+			$laLigne = $res->fetch(); 		
+		}
+		return $lesMois;
+	}
 /**
  * Retourne les informations d'une fiche de frais d'un visiteur pour un mois donné
  
- * @param $idVisiteur 
+ * @param  
  * @param $mois sous la forme aaaamm
  * @return un tableau avec des champs de jointure entre une fiche de frais et la ligne d'état 
 */	
@@ -299,4 +318,4 @@ class PdoGsb{
 		PdoGsb::$monPdo->exec($req);
 	}
 }
-?>
+

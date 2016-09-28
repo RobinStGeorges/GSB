@@ -5,20 +5,26 @@ require("include/class.pdogsb.inc.php");
 include("vues/v_sommaireC.php");
 
 $action = $_REQUEST['action'];
-$sql=$monPdo->query("select * from fichefrais where idetat!='cr'");
+
 switch($action){
-        case 'validerFrais':{ ?>
-            <select name='valide'>
-                <?php
-                while($frais=$sql->fetch(PDO::FETCH_OBJ)){
-                  $date=$frais->mois;
-                  
-                  $mois = getMois(date("d/m/Y"));
-                  $numAnnee =substr( $mois,0,4);
-                  $numMois =substr( $mois,4,2);
-                  echo"<option value=$numMois"/"$numAnnee</option>";
-                 }
-                   
+        case 'validerFrais':{ 
+            
+            $lesMois=getLesMoisDisponiblesC();
+            ?>
+            <select name="listeDesMois">
+      	<?php 
+        foreach($lesMois as $unMois){ 
+      	$mois = $unMois['mois']; 
+    	$numAnnee = $unMois['numAnnee']; ?>
+    	$numMois = $unMois['numMois']; ?>
+    		<?php if($mois == $moisASelectionner){ ?>
+    		<option value="<?php echo $mois; ?>" selected><?php echo $numMois; ?>/<?php echo $numAnnee; ?></option>
+    		<?php }else{ ?>
+    		<option value="<?php echo $mois; ?>"><?php echo $numMois; ?>/<?php echo $numAnnee; ?></option>
+    		<?php } ?>
+    		<?php } ?>
+            </select>
+                <?php   
                  }
 }
            
