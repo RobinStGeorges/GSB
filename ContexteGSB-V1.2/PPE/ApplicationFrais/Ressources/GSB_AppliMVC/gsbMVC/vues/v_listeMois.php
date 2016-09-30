@@ -1,17 +1,17 @@
 ﻿ <div id="contenu">
       <h2>Mes fiches de frais</h2>
       <h3>Mois à sélectionner : </h3>
-      <form action="index.php?uc=etatFrais&action=voirEtatFrais" method="post">
+      <form action="index.php?uc=etatFrais&action=voirUtilisateurs" method="post">
       <div class="corpsForm">
          
       <p>
 	 
         <label for="lstMois" accesskey="n">Mois : </label>
-        <select id="lstMois" name="lstMois">
+        <select id="lsMois" name="lsMois">
             <?php
 			foreach ($lesMois as $unMois)
 			{
-			    $mois = $unMois['mois'];
+                                $mois = $unMois['mois'];
 				$numAnnee =  $unMois['numAnnee'];
 				$numMois =  $unMois['numMois'];
 				if($mois == $moisASelectionner){

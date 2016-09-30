@@ -6,20 +6,20 @@ switch($action){
             $lesMois=$pdo->getLesMoisAValider();
             include ("vues/v_listeMois.php");
             break;
-        }/*
+        }
         case 'voirUtilisateurs' : {
-            $lesMois = $_POST['lesMois'];
-            $_SESSION['les'] = $lesMois;
+            $choixMois = $_POST['choixMois']; // On récupère le mois selectionné par le comptable 
+            $_SESSION['choixMois'] = $choixMois;
             $lesUtilisateurs = $pdo->getLesVisiteursAValider($lesMois);
-            include ("vues/v_voirFicheMois.php");
+            include ("vues/v_ListeDesVisiteurs.php");
             break;
 }
 
         
-}        */  
+}          
 
             
-}
+
 ?>
 
 

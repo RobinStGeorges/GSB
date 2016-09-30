@@ -274,11 +274,11 @@ class PdoGsb{
 		$laLigne = $res->fetch();
 		while($laLigne != null)	{
 			$mois = $laLigne['mois'];
-			$numAnnee =substr( $mois,0,4);
-			$numMois =substr( $mois,4,2);
+			$numAnnee =substr($mois,0,4);
+			$numMois =substr($mois,4,2);
 			$lesMois["$mois"]=array(
-		     "mois"=>"$mois",
-		    "numAnnee"  => "$numAnnee",
+                        "mois"=>"$mois",
+                        "numAnnee"  => "$numAnnee",
 			"numMois"  => "$numMois"
              );
 			$laLigne = $res->fetch(); 		
@@ -286,7 +286,7 @@ class PdoGsb{
 		return $lesMois;
 	}
         public function getLesMoisAValider(){
-		$req = "SELECT mois from fichefrais where idetat ='cr' group by mois ORDER BY `fichefrais`.`mois`  DESC";
+		$req = "SELECT mois from fichefrais where idetat ='cl' group by mois "; // A MODIFIER 
 		$res = PdoGsb::$monPdo->query($req);
 		$lesMois =array();
 		$laLigne = $res->fetch();
