@@ -64,12 +64,7 @@ class PdoGsb{
         // retourne les utilisateurs pour la date concernée en mettant en paramètre les variables années et mois
         // recoltés à partir de la liste déroulante 
         
-        public function getInfosUtilisateurMois($lesMois){
-		$req = "select Utilisateur.id as id, Utilisateur.nom as nom, Utilisateur.prenom as prenom from Utilisateur inner join fichefrais on Utilisateur.id = fichefrais.idvisiteur where fichefrais.mois='$lesMois'";                                
-		$rs = PdoGsb::$monPdo->query($req);
-		$ligne = $rs->fetch();
-		return $ligne;
-	}
+        
         
 
 /**
@@ -290,9 +285,8 @@ class PdoGsb{
 		}
 		return $lesMois;
 	}
-        public function getLesMoisDisponiblesC(){
-		$req = "select fichefrais.mois as mois from  fichefrais  
-		order by fichefrais.mois desc ";
+        public function getLesMoisAValider(){
+		$req = "SELECT mois from fichefrais where idetat ='cr' group by mois ORDER BY `fichefrais`.`mois`  DESC";
 		$res = PdoGsb::$monPdo->query($req);
 		$lesMois =array();
 		$laLigne = $res->fetch();
@@ -301,14 +295,15 @@ class PdoGsb{
 			$numAnnee =substr( $mois,0,4);
 			$numMois =substr( $mois,4,2);
 			$lesMois["$mois"]=array(
-		     "mois"=>"$mois",
-		    "numAnnee"  => "$numAnnee",
+                        "mois"=>"$mois",
+                        "numAnnee"  => "$numAnnee",
 			"numMois"  => "$numMois"
              );
-			$laLigne = $res->fetch(); 		
+			$laLigne = $res->fetch();
 		}
 		return $lesMois;
 	}
+        
         
 /**
  * Retourne les informations d'une fiche de frais d'un visiteur pour un mois donné
@@ -338,6 +333,25 @@ class PdoGsb{
 		where fichefrais.idvisiteur ='$idutilisateur' and fichefrais.mois = '$mois'";
 		PdoGsb::$monPdo->exec($req);
 	}
+       public function getLesVisiteursAValider($lesMois) {
+		$req = "SELECT id,nom as nom, prenom as prenom from fichefrais join Utilisateur where idvisiteur = visiteur.id and mois ='$lesMois'";
+		$res = PdoGsb::$monPdo->query($req);
+		$lesVisiteursValidation = array();
+		$laLigne = $res->fetch();
+		while ($laLigne != null) {
+			$id = $laLigne['id'];
+			$nom = $laLigne['nom'];
+			$prenom = $laLigne['prenom'];
+			$lesVisiteursValidation["$id"] = array(
+                                        "id" => "$id",
+					"nom" => "$nom",
+					"prenom" => "$prenom"
+			);
+			$laLigne = $res->fetch();
+		}
+		return $lesVisiteursValidation;
+	}
+        
         
         
 }
