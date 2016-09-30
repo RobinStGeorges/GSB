@@ -30,6 +30,14 @@ switch($action){
 		$dateModif =  dateAnglaisVersFrancais($dateModif);
 		include("vues/v_etatFrais.php");
 	}
+           case 'voirUtilisateurs' : {
+            $choixMois = $_POST['choixMois']; // On récupère le mois selectionné par le comptable 
+            $_SESSION['choixMois'] = $choixMois;
+            $lesUtilisateurs = $pdo->getLesVisiteursAValider($lesMois);
+            include ("vues/v_ListeDesVisiteurs.php");
+            break;
+}
+
     
 }
 ?>

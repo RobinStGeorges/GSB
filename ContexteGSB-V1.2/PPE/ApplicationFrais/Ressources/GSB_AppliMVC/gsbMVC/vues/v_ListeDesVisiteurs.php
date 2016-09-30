@@ -1,18 +1,18 @@
 ﻿ <div id="contenu">
-      <h2>Mes fiches de frais</h2>
-      <h3>Mois à sélectionner : </h3>
-      <form action="index.php?uc=etatFrais&action=voirUtilisateurs" method="post">
+      <h2>Les visiteurs concernés</h2>
+      
+      <form action="index.php?uc=gerer&action=detailfrais" method="post">
       <div class="corpsForm">
          
       <p>
 	 
         <label for="lstMois" accesskey="n">Mois : </label>
-        <select id="lstMois" name="lstMois">
+        <select id="lsUtilisateurs" name="lsUtilisateurs">
             <?php
-			foreach ($lesVisiteurs as $unVisiteur)
+			foreach ($lesUtilisateurs as $unUtilisateur)
 			{
-                                $nom = $unVisiteur['mois'];
-				$prenom =  $unVisiteur['numAnnee'];
+                                $nom = $unUtilisateur['mois'];
+				$prenom =$unUtilisateur['numAnnee'];
 				// $numMois =  $unVisiteur['numMois'];
 				
 				?>
