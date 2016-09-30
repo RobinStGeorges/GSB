@@ -26,6 +26,8 @@ switch($action){
                         $typeUser=$utilisateur['typeUser'];
 			connecter($id,$nom,$prenom,$typeUser);
                         if ($typeUser==0){
+                        // On envoie par 
+                        header ("Location : index.php?uc=fraisValide&action=MoisASelectionner");
 			include("vues/v_sommaireV.php");
 		}
                 else {include("vues/v_sommaireC.php");}
