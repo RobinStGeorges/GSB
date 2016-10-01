@@ -8,11 +8,11 @@ switch($action){
             break;
             }
         case 'VisiteurAChoisir': {
-            if (isset($_POST['lsMois'])) {
+            if (isset($_POST['lsMois'])) { // pour eviter l'erreur d'initialisation 
             $lsMois=$_POST['lsMois'];
             $SESSION['lsMois'] = $lsMois;  
             $lesVisiteurs = $pdo->getLesVisiteursAValider($lsMois);
-            include ("vues/v_ListeDesVisiteurs.php");
+            include("vues/v_ListeDesVisiteurs.php");
             }
         }
             

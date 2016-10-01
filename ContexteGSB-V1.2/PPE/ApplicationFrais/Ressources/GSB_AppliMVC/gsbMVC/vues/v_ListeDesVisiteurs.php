@@ -1,7 +1,7 @@
 ﻿ <div id="contenu">
       <h2>Les visiteurs concernés</h2>
       
-      <form action="index.php?uc=gerer&action=detailfrais" method="post">
+      <form action="index.php?uc=gererFrais&action=detailfrais" method="post">
       <div class="corpsForm">
          
       <p>
@@ -9,24 +9,22 @@
         <label for="lstMois" accesskey="n">Mois : </label>
         <select id="lsUtilisateurs" name="lsUtilisateurs">
             <?php
-			foreach ($lesVisiteurs as $unUtilisateur)
-			{
-                                $nom = $unUtilisateur['mois'];
-				$prenom =$unUtilisateur['numAnnee'];
-				$numMois =  $unVisiteur['numMois'];
+			foreach ($lesVisiteurs as $unVisiteur)
+                        {   
+                                $id=$unVisiteur['id'];
+                                $nom =$unVisiteur['mois'];
+				$prenom=$unVisiteur['numAnnee'];
 				
+				if ($unVisiteur == $unVisiteur['id']) { 
 				?>
-				<option selected value="<?php echo $nom ?>"><?php echo  $prenom ?> </option>
-				<?php 
-				
-				 
-				
-				 
-				}
-			
-			
-           
-		   ?>    
+				<option selected value="<?php echo $id ?>"><?php echo  $nom ?><?php echo $prenom ?> </option>
+                                <?php } else { ?>
+                                
+                                    <option selected value="<?php echo $id ?>"><?php echo  $nom ?><?php echo $prenom ?> </option>
+                                <?php         } 
+                                
+                        }   
+            ?>    
             
         </select>
       </p>

@@ -12,7 +12,7 @@ switch($action){
 	case 'valideConnexion':{
 		$login = $_REQUEST['login'];
                 
-		$mdp = scha1($_REQUEST['mdp']); // fonction qui permet de crypter les donnes 
+		$mdp = sha1($_REQUEST['mdp']); // fonction qui permet de crypter les donnes 
 		$utilisateur = $pdo->getInfosUtilisateur($login,$mdp);
 		if(!is_array( $utilisateur)){
 			ajouterErreur("Login ou mot de passe incorrect");
