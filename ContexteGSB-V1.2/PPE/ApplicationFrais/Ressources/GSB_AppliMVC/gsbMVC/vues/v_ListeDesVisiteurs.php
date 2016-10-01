@@ -12,15 +12,15 @@
 			foreach ($lesVisiteurs as $unVisiteur)
                         {   
                                 $id=$unVisiteur['id'];
-                                $nom =$unVisiteur['mois'];
-				$prenom=$unVisiteur['numAnnee'];
+                                $nom =$unVisiteur['nom'];
+				$prenom=$unVisiteur['prenom'];
 				
 				if ($unVisiteur == $unVisiteur['id']) { 
 				?>
 				<option selected value="<?php echo $id ?>"><?php echo  $nom ?><?php echo $prenom ?> </option>
                                 <?php } else { ?>
                                 
-                                    <option selected value="<?php echo $id ?>"><?php echo  $nom ?><?php echo $prenom ?> </option>
+                                    <option value="<?php echo $id ?>"><?php echo  $nom ?><?php echo $prenom ?> </option>
                                 <?php         } 
                                 
                         }   

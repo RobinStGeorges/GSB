@@ -334,7 +334,7 @@ class PdoGsb{
 		PdoGsb::$monPdo->exec($req);
 	}
        public function getLesVisiteursAValider($lsMois) {
-		$req = "SELECT Utilisateur.id as id nom as nom, prenom as prenom from Utilisateur inner join fichefrais on Utilisateur.id = fichefrais.idvisiteur and fichefrais.mois ='$lsMois' and typeuser =0 ";
+		$req = "SELECT id as id nom as nom  prenom as prenom from Utilisateur inner join fichefrais on Utilisateur.id = fichefrais.idvisiteur and fichefrais.mois ='$lsMois'";
 		$res = PdoGsb::$monPdo->query($req);
 		$lesVisiteursValidation = array();
 		$laLigne = $res->fetch();
