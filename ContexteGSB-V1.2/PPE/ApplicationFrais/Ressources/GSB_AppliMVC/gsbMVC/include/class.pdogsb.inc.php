@@ -20,8 +20,8 @@ class PdoGsb{
       	private static $bdd='dbname=rsaint';   		
       	private static $user='rsaint' ;    		
       	private static $mdp='aTh9oona' ;	
-		private static $monPdo;
-		private static $monPdoGsb=null;
+	private static $monPdo;
+	private static $monPdoGsb=null;
 /**
  * Constructeur privé, crée l'instance de PDO qui sera sollicitée
  * pour toutes les méthodes de la classe
@@ -78,15 +78,15 @@ class PdoGsb{
  * @param $getLesMoisAValider sous la forme aaaamm
  * @return tous les champs des lignes de frais hors forfait sous la forme d'un tableau associatif 
 */
-	public function getLesFraisHorsForfait($idutilisateur,$mois){
-	    $req = "select * from lignefraishorsforfait where lignefraishorsforfait.idvisiteur ='$idutilisateur' 
-		and lignefraishorsforfait.mois = '$mois' ";	
+	public function getLesFraisHorsForfait($CeVisiteur,$lsmois){
+	    $req = "select * from lignefraishorsforfait where lignefraishorsforfait.idvisiteur ='$CeVisiteur' 
+		and lignefraishorsforfait.mois = '$lsmois' ";	
 		$res = PdoGsb::$monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		$nbLignes = count($lesLignes);
 		for ($i=0; $i<$nbLignes; $i++){
-			$date = $lesLignes[$i]['date'];
-			$lesLignes[$i]['date'] =  dateAnglaisVersFrancais($date);
+		$date = $lesLignes[$i]['date'];
+		$lesLignes[$i]['date'] =  dateAnglaisVersFrancais($date);
 		}
 		return $lesLignes; 
 	}
@@ -115,13 +115,25 @@ class PdoGsb{
 		$req = "select fraisforfait.id as idfrais, fraisforfait.libelle as libelle, 
 		lignefraisforfait.quantite as quantite from lignefraisforfait inner join fraisforfait 
 		on fraisforfait.id = lignefraisforfait.idfraisforfait
-		where lignefraisforfait.idutilisateur ='$CeVisiteur' and lignefraisforfait.mois='$lsmois' 
+		where lignefraisforfait.idvisiteur ='$CeVisiteur' and lignefraisforfait.mois='$lsmois' 
 		order by lignefraisforfait.idfraisforfait";	
 		$res = PdoGsb::$monPdo->query($req);
-		$lesLignes = $res->fetchAll();
-		return $lesLignes; 
+                $laLigne = $res->fetch();
+                while($laLigne != null)	{
+			$idfrais = $laLigne['idfrais'];
+			$libelle = $laLigne['libelle'];
+			$quantite=$laLigne['quantite'];
+			$lesFraisForfait["$idfrais"]=array(
+                        "idfrais"=>"$idfrais",
+                        "libelle"=>"$libelle",
+			"quantite"=>"$quantite"
+             );
+			$laLigne = $res->fetch(); 		
+		}
+		return $lesFraisForfait;
+                
 	}
-        public function getLesFraisForfaitC($mois){ // Modifier 
+        public function getLesFraisForfaitC($mois){ // Kesako ? 
 		$req = "select fraisforfait.id as idfrais, fraisforfait.libelle as libelle, 
 		lignefraisforfait.quantite as quantite from lignefraisforfait inner join fraisforfait 
 		on fraisforfait.id = lignefraisforfait.idfraisforfait

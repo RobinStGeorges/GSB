@@ -1,7 +1,7 @@
 ﻿ <div id="contenu">
       <h2>Les visiteurs concernés</h2>
       
-      <form action="index.php?uc=gererFrais&action=fraisHorsForfait" method="post">
+      <form action="index.php?uc=gererFrais&action=fraisForfait" method="post">
       <div class="corpsForm">
          
       <p>
