@@ -15,10 +15,21 @@ switch($action){
             include("vues/v_ListeDesVisiteurs.php");
             }
         }
+        case 'tousLesForfait' : {
+            if (isset($_REQUEST['CeVisiteur']['lsMois'] )) {
+            $CeVisiteur = $_REQUEST['CeVisiteur'];
+            $lsMois = $_REQUEST['lsMois'];
+            }
+            $lesFraisForfait= $pdo->getLesFraisForfait($CeVisiteur,$lsmois);
+            $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($CeVisiteur,$lsmois);
+            $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($CeVisiteur,$lsMois);
             
+            
+            
+           
     } 
     
-    
+}  
             
 
 ?>

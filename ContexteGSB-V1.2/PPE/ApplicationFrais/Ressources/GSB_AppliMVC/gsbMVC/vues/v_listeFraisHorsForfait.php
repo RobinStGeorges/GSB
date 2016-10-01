@@ -1,21 +1,22 @@
 ﻿
 <table class="listeLegere">
   	   <caption>Descriptif des éléments hors forfait
-       </caption>
+           </caption>
              <tr>
                 <th class="date">Date</th>
-				<th class="libelle">Libellé</th>  
+		<th class="libelle">Libellé</th>  
                 <th class="montant">Montant</th>  
                 <th class="action">&nbsp;</th>              
              </tr>
           
     <?php    
-	    foreach( $lesFraisHorsForfait as $unFraisHorsForfait) 
-		{
+	    foreach( $lesFraisHorsForfait as $unFraisHorsForfait)
+                
+		{       $id = $unFraisHorsForfait['id'];
 			$libelle = $unFraisHorsForfait['libelle'];
 			$date = $unFraisHorsForfait['date'];
 			$montant=$unFraisHorsForfait['montant'];
-			$id = $unFraisHorsForfait['id'];
+			
 	?>		
             <tr>
                 <td> <?php echo $date ?></td>

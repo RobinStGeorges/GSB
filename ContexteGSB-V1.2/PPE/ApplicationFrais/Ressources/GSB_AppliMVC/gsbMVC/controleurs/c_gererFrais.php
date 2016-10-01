@@ -44,21 +44,7 @@ switch($action){
 		break;
 	}
   
-        case 'fraisForfait' : {  
-            if (isset($_REQUEST['CeVisiteur']['lsMois'] )) {
-            $CeVisiteur = $_REQUEST['CeVisiteur'];
-            $lsMois = $_REQUEST['lsMois'];            
-            $lesFraisForfait= $pdo->getLesFraisForfait($CeVisiteur,$lsmois);
-            include("vues/v_listeFraisForfait.php");
-            }
-        }
-        case 'fraisHorsForfait' : {
-            if (isset($_REQUEST['CeVisiteur']['lsMois'] )) {
-            $CeVisiteur = $_REQUEST['CeVisiteur'];
-            $lsMois = $_REQUEST['lsMois'];
-            $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($CeVisiteur,$lsmois);
-            include("vues/v_listeFraisHorsForfait.php");           
-            }
-        }
+        
 }
+
 ?>
