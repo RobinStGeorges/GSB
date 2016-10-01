@@ -41,12 +41,13 @@ switch($action){
                 $pdo->supprimerFraisHorsForfait($idFrais);
 		break;
 	}
-        case 'detaisfrais' : {
+        case 'detaisfrais' : { // à compléter 
             
 }
-$lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idUtilisateur,$mois);
-$lesFraisForfait= $pdo->getLesFraisForfait($idUtilisateur,$mois);
-include("vues/v_listeFraisForfait.php");
-include("vues/v_listeFraisHorsForfait.php");
-
+        case 'fraisHorsForfait' : { // à utiliser          
+            $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idUtilisateur,$mois);
+            $lesFraisForfait= $pdo->getLesFraisForfait($idUtilisateur,$mois);
+            include("vues/v_listeFraisForfait.php");
+            include("vues/v_listeFraisHorsForfait.php");
+        }
 ?>
