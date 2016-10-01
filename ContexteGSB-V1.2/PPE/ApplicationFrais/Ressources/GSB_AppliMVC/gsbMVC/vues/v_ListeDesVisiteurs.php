@@ -1,13 +1,13 @@
 ﻿ <div id="contenu">
       <h2>Les visiteurs concernés</h2>
       
-      <form action="index.php?uc=gererFrais&action=detailfrais" method="post">
+      <form action="index.php?uc=gererFrais&action=fraisHorsForfait" method="post">
       <div class="corpsForm">
          
       <p>
 	 
         <label for="lstMois" accesskey="n">Mois : </label>
-        <select id="lsUtilisateurs" name="lsUtilisateurs">
+        <select id="lsUtilisateurs" name="CeVisiteur">
             <?php
 			foreach ($lesVisiteurs as $unVisiteur)
                         {   

@@ -1,6 +1,8 @@
 <?php
 include("vues/v_sommaireV.php");
+if (isset($_SESSION['idUtilisateur'])) {
 $idUtilisateur = $_SESSION['idUtilisateur'];
+}
 $mois = getMois(date("d/m/Y"));
 $numAnnee =substr( $mois,0,4);
 $numMois =substr( $mois,4,2);
@@ -41,14 +43,16 @@ switch($action){
                 $pdo->supprimerFraisHorsForfait($idFrais);
 		break;
 	}
-        case 'detaisfrais' : { // à compléter 
-            
-}
-        case 'fraisHorsForfait' : { // à utiliser          
-            $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idUtilisateur,$mois);
-            $lesFraisForfait= $pdo->getLesFraisForfait($idUtilisateur,$mois);
+  
+        case 'fraisHorsForfait' : { // à utiliser 
+            if (isset($_REQUEST['CeVisiteur']['lsMois'] )) {
+            $CeVisiteur = $_REQUEST['CeVisiteur'];
+            $lsMois = $_REQUEST['lsMois'];
+            $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($CeVisiteur,$lsmois);
+            $lesFraisForfait= $pdo->getLesFraisForfait($CeVisiteur,$lsmois);
             include("vues/v_listeFraisForfait.php");
             include("vues/v_listeFraisHorsForfait.php");
+            }
         }
 }
 ?>
