@@ -1,7 +1,9 @@
 ﻿<?php
 include("vues/v_sommaireV.php");
 $action = $_REQUEST['action'];
+if (isset($_SESSION['idUtilisateur'])) { 
 $idUtilisateur = $_SESSION['idUtilisateur'];
+}
 switch($action){
 	case 'selectionnerMois':{
 		$lesMois=$pdo->getLesMoisDisponibles($idUtilisateur);
@@ -30,13 +32,7 @@ switch($action){
 		$dateModif =  dateAnglaisVersFrancais($dateModif);
 		include("vues/v_etatFrais.php");
 	}
-           case 'voirUtilisateurs' : {
-            $choixMois = $_POST['choixMois']; // On récupère le mois selectionné par le comptable 
-            $_SESSION['choixMois'] = $choixMois;
-            $lesUtilisateurs = $pdo->getLesVisiteursAValider($lesMois);
-            include ("vues/v_ListeDesVisiteurs.php");
-            break;
-}
+   
 
     
 }

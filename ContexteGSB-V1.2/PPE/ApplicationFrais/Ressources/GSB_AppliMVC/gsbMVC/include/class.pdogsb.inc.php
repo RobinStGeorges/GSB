@@ -75,7 +75,7 @@ class PdoGsb{
  * à une modification de la structure itérée - transformation du champ date-
  
  * @param  
- * @param $mois sous la forme aaaamm
+ * @param $getLesMoisAValider sous la forme aaaamm
  * @return tous les champs des lignes de frais hors forfait sous la forme d'un tableau associatif 
 */
 	public function getLesFraisHorsForfait($idutilisateur,$mois){
@@ -333,8 +333,8 @@ class PdoGsb{
 		where fichefrais.idvisiteur ='$idutilisateur' and fichefrais.mois = '$mois'";
 		PdoGsb::$monPdo->exec($req);
 	}
-       public function getLesVisiteursAValider($lesMois) {
-		$req = "SELECT id,nom as nom, prenom as prenom from fichefrais join Utilisateur where idvisiteur = visiteur.id and mois ='$lesMois'";
+       public function getLesVisiteursAValider($lsMois) {
+		$req = "SELECT Utilisateur.id as id nom as nom, prenom as prenom from Utilisateur inner join fichefrais on Utilisateur.id = fichefrais.idvisiteur and fichefrais.mois ='$lsMois' and typeuser =0 ";
 		$res = PdoGsb::$monPdo->query($req);
 		$lesVisiteursValidation = array();
 		$laLigne = $res->fetch();

@@ -9,11 +9,11 @@
         <label for="lstMois" accesskey="n">Mois : </label>
         <select id="lsUtilisateurs" name="lsUtilisateurs">
             <?php
-			foreach ($lesUtilisateurs as $unUtilisateur)
+			foreach ($lesVisiteurs as $unUtilisateur)
 			{
                                 $nom = $unUtilisateur['mois'];
 				$prenom =$unUtilisateur['numAnnee'];
-				// $numMois =  $unVisiteur['numMois'];
+				$numMois =  $unVisiteur['numMois'];
 				
 				?>
 				<option selected value="<?php echo $nom ?>"><?php echo  $prenom ?> </option>
