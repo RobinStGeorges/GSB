@@ -15,23 +15,26 @@ switch($action){
             include("vues/v_ListeDesVisiteurs.php");
         }
     }
+    
     case 'tousLesForfait' : {
+        
+        
+    //  N ° 1 Liste Deroulante : affichant les Mois 
         if(isset($_POST["CeVisiteur"])){
-        $CeVisiteur=$_POST['CeVisiteur'];
+        $idUtilisateur=$_POST['CeVisiteur'];
         $_SESSION["CeVisiteur"]=$CeVisiteur;
         $lsMois=$_SESSION["lsMois"];
         $lesVisiteurs = $pdo->getLesVisiteursAValider($lsMois);
         include("vues/v_ListeDesVisiteurs.php");
+        $lsMois=$pdo->getLesMoisDisponibles($CeVisiteur);        
+	$moisASelectionner = $lsMois; 
+        include ("vues/v_listeMois.php");
         
         
-        //  N ° 1 Liste Deroulante : affichant les Mois 
-	$lsMois=$pdo->getLesMoisAValider();
-        
-	$moisASelectionner = $lsMois; // Permet de mettre la valeur choisie directement dans la liste deroulante 
+	
 	
         
-        //N ° 2 Liste Deroulante : affichant les Visiteurs de la date 
-       
+      
         
       
         
@@ -58,10 +61,3 @@ switch($action){
             
 
 ?>
-
-
-
-
-
-
-
