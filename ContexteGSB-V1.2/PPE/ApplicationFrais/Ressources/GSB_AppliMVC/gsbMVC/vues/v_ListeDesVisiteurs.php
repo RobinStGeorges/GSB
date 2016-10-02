@@ -1,9 +1,9 @@
 <div id="contenu">
     <h2>Les visiteurs concernés</h2>
-    <form action="index.php?uc=fraisValide&action=tousLesForfaits" method="post">
+    <form action="index.php?uc=fraisValide&action=tousLesForfait" method="post">
         <div class="corpsForm">
             <p>
-                <label for="lstMois" accesskey="n">Mois : </label>
+                <label for="lstMois" accesskey="n">Visiteurs : </label>
                 <select id="lsUtilisateurs" name="CeVisiteur">
                     <?php
                     foreach ($lesVisiteurs as $unVisiteur){   

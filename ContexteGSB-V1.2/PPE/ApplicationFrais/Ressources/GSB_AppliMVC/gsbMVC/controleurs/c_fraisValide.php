@@ -10,25 +10,51 @@ switch($action){
     case 'VisiteurAChoisir': {
         if (isset($_POST['lsMois'])) { // pour eviter l'erreur d'initialisation 
             $lsMois=$_POST['lsMois'];
-            $SESSION['lsMois'] = $lsMois;  
+            $_SESSION['lsMois'] = $lsMois;  
             $lesVisiteurs = $pdo->getLesVisiteursAValider($lsMois);
             include("vues/v_ListeDesVisiteurs.php");
         }
     }
     case 'tousLesForfait' : {
-        if (isset($_REQUEST['CeVisiteur']['lsMois'] )) {
-            $CeVisiteur = $_REQUEST['CeVisiteur'];
-            $lsMois = $_REQUEST['lsMois'];
+        if(isset($_POST["CeVisiteur"])){
+        $CeVisiteur=$_POST['CeVisiteur'];
+        $_SESSION["CeVisiteur"]=$CeVisiteur;
+        $lsMois=$_SESSION["lsMois"];
+        $lesVisiteurs = $pdo->getLesVisiteursAValider($lsMois);
+        include("vues/v_ListeDesVisiteurs.php");
         
-        $lesFraisForfait= $pdo->getLesFraisForfait($CeVisiteur,$lsmois);
-        $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($CeVisiteur,$lsmois);
-        $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($CeVisiteur,$lsMois);
-    } 
-    
+        
+        //  N ° 1 Liste Deroulante : affichant les Mois 
+	$lsMois=$pdo->getLesMoisAValider();
+        
+	$moisASelectionner = $lsMois; // Permet de mettre la valeur choisie directement dans la liste deroulante 
+	
+        
+        //N ° 2 Liste Deroulante : affichant les Visiteurs de la date 
+       
+        
+      
+        
+        
+        // Affichage de la fiche entiere pour le visiteur et le mois sélectionné 
+	$lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($CeVisiteur,$lsMois);
+	$lesFraisForfait= $pdo->getLesFraisForfait($CeVisiteur,$lsMois);
+	$lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($CeVisiteur,$lsMois);
+	$numAnnee =substr($lsMois,0,4);
+	$numMois =substr($lsMois,4,2);
+	$libEtat = $lesInfosFicheFrais['libEtat'];
+	$montantValide = $lesInfosFicheFrais['montantValide'];
+	$nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
+	$dateModif =  $lesInfosFicheFrais['dateModif'];
+	$dateModif =  dateAnglaisVersFrancais($dateModif);
+	include("vues/v_etatFrais.php");
         }
     
+        }
+}
     
-}  
+    
+ 
             
 
 ?>
