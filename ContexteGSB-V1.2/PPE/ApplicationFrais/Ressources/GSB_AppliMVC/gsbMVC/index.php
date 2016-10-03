@@ -13,9 +13,11 @@ switch($uc){
     case 'connexion':{
 	include("controleurs/c_connexion.php");break;
     }
+    //Menu affiché une fois connecté
     case 'gererFrais' :{
 	include("controleurs/c_gererFrais.php");break;
     }
+    //
     case 'etatFrais' :{
 	include("controleurs/c_etatFrais.php");break; 
     }
