@@ -292,10 +292,10 @@ class PdoGsb{
 		return $lesMois;
                 
 	}
-      
+      //test de commentaire 
             
         public function getLesMoisAValider(){
-		$req = "SELECT mois from fichefrais where idetat ='cr' group by mois "; // A MODIFIER 
+		$req = "SELECT mois from fichefrais where idetat ='cl' group by mois "; // A MODIFIER 
 		$res = PdoGsb::$monPdo->query($req);
 		$lesMois =array();
 		$laLigne = $res->fetch();
